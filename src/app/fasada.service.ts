@@ -1,43 +1,37 @@
-import {Injectable, signal} from "@angular/core";
-import {FormGroup, Validators} from "@angular/forms";
+import {inject, Injectable, signal} from "@angular/core";
+import {FormGroup} from "@angular/forms";
 import {ControlEmiter} from "./shared/control-emiter.type";
-import {smartControl} from "./shared/smart-control";
-import {MyForm} from "./shared/my-form";
-import { Builder } from "builder-pattern";
+import {smartControl, smartGroup} from "./shared/smart-control";
+import {DaneIdentyfikacyjne, MyForm} from "./shared/my-form";
+import {HandlerRegistry} from "./shared/handler-registry";
+import {form1Handler} from "./form-handlers/form1.handler";
+import {form2Handler} from "./form-handlers/form2.handler";
+import {RegistrationFormBuilderService} from "./RegistrationFormBuilderService";
+import { ControlInputHandler } from "./shared/control-input-handler.token";
+
+
 
 @Injectable()
-export class FasadaService {
-  private form = new FormGroup<MyForm>({
-    form1: smartControl(0, {maxLength: 10, mask: signal('SSSSS')}),
-    form2: smartControl('', {maxLength: 5, visible: signal(false)})
-  })
-  private zmienna :MyForm = this.createZmienna();
+export class FasadaService implements ControlInputHandler {
+  private registrationFormBuilderService = inject(RegistrationFormBuilderService);
+  private form = this.registrationFormBuilderService.registerForm();
 
-  private createZmienna() {
-    return Builder<MyForm>()
-      .build();
-  }
-  constructor() {
-  }
+  private registry = new HandlerRegistry<MyForm>()
+    .register(form1Handler)
+    .register(form2Handler);
 
+  constructor() {}
 
-  onInput(emited: ControlEmiter<string| number>) {
-    if (emited.control == this.form.controls.form1 && emited.control.value == 'asd') {
-      this.form.controls.form2.visible.set(true);
-      this.form.controls.form1.mask?.set('SSSS-S');
-    }
-    console.log('valid', this.form.controls.form1);
-
-
-    if (emited.event.inputType === 'insertFromPaste') {
-      console.log('paste');//todo
-    } else if (emited.event.inputType === 'insertText') {
-      console.log('typing');//todo
-    }
+  onInput(emited: ControlEmiter<string | number>) {
+    this.registry.handle(emited, this.form.controls);
+    console.log(this.form.value);
   }
 
   getFormGroup() {
     return this.form;
   }
 
+  getDaneIdentyfikacyjne() {
+    return this.form.controls.daneIdentyfikacyjne;
+  }
 }

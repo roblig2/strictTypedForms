@@ -1,33 +1,14 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
-
-import {CounterService} from '../counter.service';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {SmartControl} from "../shared/smart-control";
 
 @Component({
   selector: 'app-form1',
   templateUrl: './form1.component.html',
   styleUrls: ['./form1.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Form1Component implements OnInit, OnDestroy {
+export class Form1Component {
 
-  @Input() control!: SmartControl<number>;
-  counter = 0;
-  counterServiceSub?: Subscription;
-
-  constructor(private counterService: CounterService) {
-  }
-
-  ngOnInit(): void {
-    this.counterServiceSub = this.counterService.counterChanged.subscribe(
-      (newVal) => (this.counter = newVal)
-    );
-  }
-
-  ngOnDestroy(): void {
-    if (this.counterServiceSub) {
-      this.counterServiceSub.unsubscribe();
-    }
-  }
+  @Input() control!: SmartControl;
 
 }

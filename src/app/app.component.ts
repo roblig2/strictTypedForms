@@ -1,17 +1,19 @@
-import {Component, inject} from '@angular/core';
-import {FormGroup} from "@angular/forms";
-import {FasadaService }from "./fasada.service";
-import {MyForm} from "./shared/my-form";
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {FasadaService} from "./fasada.service";
+import {provideFasada} from "./fasada.providers";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [FasadaService]
+  providers: [
+    provideFasada()
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  fasadaService = inject(FasadaService);
-  form= this.fasadaService.getFormGroup();
-
+  private fasadaService = inject(FasadaService);
+  componentForm = this.fasadaService.getFormGroup();
+  daneId = this.fasadaService.getDaneIdentyfikacyjne();
 }
 

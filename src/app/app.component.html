@@ -1,7 +1,18 @@
-<h1>NgRx Introduction</h1>
+<!--<h1>NgRx Introduction</h1>-->
 
-<app-form1 [control]="form.controls.form1"></app-form1>
-<app-form2  [control]="form.controls.form2" *ngIf="form.controls.form2.visible()"></app-form2>
+form1 <app-form1 [control]="componentForm.controls.form1"></app-form1>
 
-<app-field label="label"></app-field>
-<app-moje-pole></app-moje-pole>
+<ng-container *ngIf="componentForm.controls.form2.visible()">
+  form2
+  <app-form1 [control]="componentForm.controls.form2"></app-form1>
+</ng-container>
+
+
+
+<ng-container *ngIf="daneId.visible()">
+subform tytul <app-form1 [control]="daneId.controls.tytul"></app-form1>
+</ng-container>
+<!--form2 <app-form2  [control]="form.controls.form2" *ngIf="form.controls.form2.visible()"></app-form2>-->
+
+<!--<app-field label="label"></app-field>-->
+<!--<app-moje-pole></app-moje-pole>-->

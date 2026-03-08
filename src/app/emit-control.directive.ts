@@ -1,19 +1,19 @@
-import {Directive, ElementRef, HostListener, inject, OnInit} from "@angular/core";
+import {Directive, HostListener, inject, OnInit} from "@angular/core";
 import {NgControl} from "@angular/forms";
-import {FasadaService} from "./fasada.service";
 import {SmartControl} from "./shared/smart-control";
+import {ControlEmiter} from "./shared/control-emiter.type";
+import {CONTROL_INPUT_HANDLER} from "./shared/control-input-handler.token";
 
 @Directive({
   selector: '[emitControlEvent]'
 })
 export class EmitControlEventDirective implements OnInit {
-  private fasadaService = inject(FasadaService);
+  private handler = inject(CONTROL_INPUT_HANDLER);
   private ngControl = inject(NgControl, {optional: true});
-  private el = inject(ElementRef<HTMLInputElement>);
-  private formControl!: SmartControl<string|number>;
+  private formControl!: SmartControl<string | number>;
 
   ngOnInit() {
-    this.formControl = this.ngControl?.control as SmartControl<string| number>;
+    this.formControl = this.ngControl?.control as SmartControl<string | number>;
   }
 
   @HostListener('input', ['$event'])
@@ -21,11 +21,11 @@ export class EmitControlEventDirective implements OnInit {
     if (!(event instanceof InputEvent)) return;
 
     const input = event.target as HTMLInputElement;
-
-    this.fasadaService.onInput({
+    let emitedValue: ControlEmiter<string | number> = {
       event,
       control: this.formControl,
       value: input.value
-    });
+    };
+    this.handler.onInput(emitedValue);
   }
 }

@@ -1,6 +1,6 @@
-<p class="counter">{{ counter }}</p>
-<p class="counter">Double: {{ counter * 2 }}</p>
-<input id="input" type="text" [formControl]="control" emitControlEvent [maxlength]="control.maxLength" [mask]="control.mask()"/>
-<div *ngIf="control.invalid">dupa nie działa</div>
+<input id="input" [type]="control.type()" [formControl]="control" emitControlEvent [maxlength]="control.maxLength" [mask]="control.mask()"/>
+<div *ngIf="control.invalid && !control.hasError('mask')">dupa nie działa</div>
+<div>----------------------------</div>
+<div *ngIf="control.warning()">{{control.warning()}}</div>
 <br/>
 

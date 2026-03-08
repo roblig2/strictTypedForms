@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { Form1Component } from './counter-output/form1.component';
-import { Form2Component } from './counter-controls/form2.component';
 import { StoreModule } from '@ngrx/store';
 import {counterReducer} from "./store/counter.reducer";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -17,7 +16,6 @@ import {NgxMaskDirective, provideEnvironmentNgxMask} from "ngx-mask";
   declarations: [
     AppComponent,
     Form1Component,
-    Form2Component,
     EmitControlEventDirective,
     FieldComponent,
     MojePoleComponent
