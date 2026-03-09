@@ -1,5 +1,6 @@
 import {AbstractControl, FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {signal, WritableSignal} from "@angular/core";
+import {ustawWlasciwosciKontrolek} from "./smart-select-control";
 
 export interface ControlMeta {
   maxLength: number;
@@ -25,11 +26,7 @@ export function smartControl<T = string>(
     validators: meta.validators
   }) as SmartControl<T>;
 
-  ctrl.maxLength = meta.maxLength ?? 255;
-  ctrl.mask = meta.mask ?? signal('');
-  ctrl.visible = meta.visible ?? signal(true);
-  ctrl.type = meta.type ?? signal('string');
-  ctrl.warning = meta.warning ?? signal(null);
+  ustawWlasciwosciKontrolek(ctrl, meta);
   return ctrl;
 }
 

@@ -10,6 +10,7 @@ import {EmitControlEventDirective} from "./emit-control.directive";
 import {FieldComponent} from "./app-field.component";
 import {MojePoleComponent} from "./moje-pole.component";
 import {NgxMaskDirective, provideEnvironmentNgxMask} from "ngx-mask";
+import {SelectComponent} from "./select/select.component";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {NgxMaskDirective, provideEnvironmentNgxMask} from "ngx-mask";
     Form1Component,
     EmitControlEventDirective,
     FieldComponent,
-    MojePoleComponent
+    MojePoleComponent,
+    SelectComponent,
   ],
   imports: [BrowserModule, StoreModule.forRoot({
     counter: counterReducer

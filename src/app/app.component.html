@@ -10,9 +10,12 @@ form1 <app-form1 [control]="componentForm.controls.form1"></app-form1>
 
 
 <ng-container *ngIf="daneId.visible()">
-subform tytul <app-form1 [control]="daneId.controls.tytul"></app-form1>
+  tytul <app-select [control]="daneId.controls.tytul"></app-select>
+  system <app-select [control]="daneId.controls.systemRozliczeniowy"></app-select>
 </ng-container>
 <!--form2 <app-form2  [control]="form.controls.form2" *ngIf="form.controls.form2.visible()"></app-form2>-->
+
+<button (click)="submit()" [disabled]="componentForm.invalid">Wyślij</button>
 
 <!--<app-field label="label"></app-field>-->
 <!--<app-moje-pole></app-moje-pole>-->

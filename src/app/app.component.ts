@@ -15,5 +15,9 @@ export class AppComponent {
   private fasadaService = inject(FasadaService);
   componentForm = this.fasadaService.getFormGroup();
   daneId = this.fasadaService.getDaneIdentyfikacyjne();
+
+  submit() {
+    this.fasadaService.submit();
+  }
 }
 

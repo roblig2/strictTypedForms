@@ -1,8 +1,9 @@
 import {SmartControl, SmartGroup} from "./smart-control";
+import {SmartSelectControl} from "./smart-select-control";
 
 export interface DaneIdentyfikacyjne {
-  tytul: SmartControl<string>;
-  systemRozliczeniowy: SmartControl<string>;
+  tytul: SmartSelectControl<string>;
+  systemRozliczeniowy: SmartSelectControl<string>;
 }
 
 export interface MyForm {

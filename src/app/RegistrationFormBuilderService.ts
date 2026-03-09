@@ -1,4 +1,5 @@
 import {smartControl, smartGroup} from "./shared/smart-control";
+import {smartSelectControl} from "./shared/smart-select-control";
 import {DaneIdentyfikacyjne, MyForm} from "./shared/my-form";
 import {Injectable, signal} from "@angular/core";
 import {FormGroup} from "@angular/forms";
@@ -7,8 +8,8 @@ import {FormGroup} from "@angular/forms";
 export class RegistrationFormBuilderService {
 
   private stworzGrupeDanychIdentyfikacyjnych = smartGroup<DaneIdentyfikacyjne>({
-    tytul: smartControl('', {maxLength: 20}),
-    systemRozliczeniowy: smartControl('', {maxLength: 15})
+    tytul: smartSelectControl('', {maxLength: 20}),
+    systemRozliczeniowy: smartSelectControl('', {maxLength: 15})
   }, {visible: signal(false)});
 
   registerForm() {
