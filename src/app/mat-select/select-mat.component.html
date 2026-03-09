@@ -1,0 +1,10 @@
+<mat-form-field>
+  <mat-select placeholder="Fruits"   [formControl]="control">
+    <mat-option *ngFor="let f of fruits" [value]="f">
+      {{f}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="control!==undefined && control.invalid">
+    <strong>required</strong>
+  </mat-error>
+</mat-form-field>

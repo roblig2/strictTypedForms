@@ -11,6 +11,9 @@ import {FieldComponent} from "./app-field.component";
 import {MojePoleComponent} from "./moje-pole.component";
 import {NgxMaskDirective, provideEnvironmentNgxMask} from "ngx-mask";
 import {SelectComponent} from "./select/select.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSelectModule} from "@angular/material/select";
+import {SelectMatComponent} from "./mat-select/select-mat.component";
 
 
 @NgModule({
@@ -20,11 +23,10 @@ import {SelectComponent} from "./select/select.component";
     EmitControlEventDirective,
     FieldComponent,
     MojePoleComponent,
-    SelectComponent,
   ],
   imports: [BrowserModule, StoreModule.forRoot({
     counter: counterReducer
-  }, {}), ReactiveFormsModule, NgxMaskDirective,
+  }, {}), ReactiveFormsModule, NgxMaskDirective, BrowserAnimationsModule, MatSelectModule, SelectMatComponent, SelectMatComponent, SelectMatComponent, SelectComponent,
   ],
   providers: [provideEnvironmentNgxMask()],
   bootstrap: [AppComponent],

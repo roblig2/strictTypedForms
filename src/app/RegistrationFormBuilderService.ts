@@ -2,7 +2,7 @@ import {smartControl, smartGroup} from "./shared/smart-control";
 import {smartSelectControl} from "./shared/smart-select-control";
 import {DaneIdentyfikacyjne, MyForm} from "./shared/my-form";
 import {Injectable, signal} from "@angular/core";
-import {FormGroup} from "@angular/forms";
+import {AbstractControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 
 @Injectable()
 export class RegistrationFormBuilderService {
@@ -15,9 +15,15 @@ export class RegistrationFormBuilderService {
   registerForm() {
 
     return new FormGroup<MyForm>({
-      form1: smartControl('', {maxLength: 10, mask: signal('00-000'), type: signal('string')}),
+      form1: smartControl('', {
+        maxLength: 10,
+        mask: signal('00-000'),
+        type: signal('string'),
+        validators: [Validators.required]
+      }),
       form2: smartControl('', {maxLength: 5, visible: signal(true)}),
-      daneIdentyfikacyjne: this.stworzGrupeDanychIdentyfikacyjnych
+      daneIdentyfikacyjne: this.stworzGrupeDanychIdentyfikacyjnych,
+      form3: smartControl('', {})// Przykład dodatkowej kontrolki, która nie jest częścią MyForm, ale jest potrzebna w formularzu
     });
   }
 }

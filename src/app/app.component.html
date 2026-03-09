@@ -15,7 +15,9 @@ form1 <app-form1 [control]="componentForm.controls.form1"></app-form1>
 </ng-container>
 <!--form2 <app-form2  [control]="form.controls.form2" *ngIf="form.controls.form2.visible()"></app-form2>-->
 
-<button (click)="submit()" [disabled]="componentForm.invalid">Wyślij</button>
+<app-select-mat [control]="componentForm.controls.form1"></app-select-mat>
+
+<button (click)="submit()" [disabled]="false">Wyślij</button>
 
 <!--<app-field label="label"></app-field>-->
 <!--<app-moje-pole></app-moje-pole>-->

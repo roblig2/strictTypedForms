@@ -16,6 +16,10 @@ export class AppComponent {
   componentForm = this.fasadaService.getFormGroup();
   daneId = this.fasadaService.getDaneIdentyfikacyjne();
 
+  ngAfterViewInit() {
+    this.componentForm.controls.form1.markAsTouched();
+  }
+
   submit() {
     this.fasadaService.submit();
   }
