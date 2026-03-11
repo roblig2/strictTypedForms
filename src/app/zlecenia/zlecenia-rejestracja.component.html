@@ -1,0 +1,40 @@
+<h2>Zlecenia - Rejestracja</h2>
+
+<form [formGroup]="form" style="display: flex; flex-direction: column; gap: 12px; max-width: 400px;">
+
+  <div>
+    <label>Nazwa</label><br>
+    <input formControlName="nazwa" emitBlurEvent placeholder="Wpisz nazwę...">
+  </div>
+
+  <div>
+    <label>Kod kraju
+      <span *ngIf="form.controls['miejscowosc'].validator" style="color: red;">*</span>
+    </label><br>
+    <input formControlName="kodKraju" emitBlurEvent placeholder="np. PL" maxlength="2">
+  </div>
+
+  <div>
+    <label>
+      Miejscowość
+      <span *ngIf="form.controls['miejscowosc'].validator" style="color: red;">*</span>
+    </label><br>
+    <input formControlName="miejscowosc" emitBlurEvent placeholder="Wpisz miejscowość...">
+    <div *ngIf="form.controls['miejscowosc'].invalid && form.controls['miejscowosc'].touched"
+         style="color: red; font-size: 12px;">
+      Miejscowość jest wymagana
+    </div>
+  </div>
+
+  <div>
+    <label>Ulica</label><br>
+    <input formControlName="ulica" emitBlurEvent placeholder="Wpisz ulicę...">
+  </div>
+
+  <div style="margin-top: 8px; padding: 8px; background: #f0f0f0; font-size: 12px;">
+    <strong>Stan formularza:</strong><br>
+    Miejscowość wymagana: {{ form.controls['miejscowosc'].validator ? 'TAK' : 'NIE' }}<br>
+    Form valid: {{ form.valid }}
+  </div>
+
+</form>

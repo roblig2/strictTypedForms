@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import {counterReducer} from "./store/counter.reducer";
 import {ReactiveFormsModule} from "@angular/forms";
 import {EmitControlEventDirective} from "./emit-control.directive";
+import {EmitBlurEventDirective} from "./emit-blur-event.directive";
 import {FieldComponent} from "./app-field.component";
 import {MojePoleComponent} from "./moje-pole.component";
 import {NgxMaskDirective, provideEnvironmentNgxMask} from "ngx-mask";
@@ -14,6 +15,7 @@ import {SelectComponent} from "./select/select.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSelectModule} from "@angular/material/select";
 import {SelectMatComponent} from "./mat-select/select-mat.component";
+import {ZleceniaRejestracjaComponent} from "./zlecenia/zlecenia-rejestracja.component";
 
 
 @NgModule({
@@ -21,8 +23,10 @@ import {SelectMatComponent} from "./mat-select/select-mat.component";
     AppComponent,
     Form1Component,
     EmitControlEventDirective,
+    EmitBlurEventDirective,
     FieldComponent,
     MojePoleComponent,
+    ZleceniaRejestracjaComponent,
   ],
   imports: [BrowserModule, StoreModule.forRoot({
     counter: counterReducer
